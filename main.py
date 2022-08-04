@@ -39,10 +39,13 @@ def animate(i):
     plt.annotate(f'Max amplitude: {round(maximum, 4).__format__(".04f")}\n '
                  f'Min Amplitude: {round(minimum, 4).__format__(".04f")}', (0.25, -0.75))
 
-
-with open("Output/attemptdata.txt", "r") as f:
-    contents = f.readlines()
-    attempt = int(contents[0])
+try:
+    with open("Output/attemptdata.txt", "r") as f:
+        contents = f.readlines()
+        attempt = int(contents[0])
+except FileNotFoundError as e:
+    print(e)
+    exit(-1)
 
 with open("Output/attemptdata.txt", "w") as f:
     f.write(f"{attempt + 1}")
